@@ -1,0 +1,19 @@
+spring:  
+  datasource: 
+    url: jdbc:mysql://localhost:3306/mezcladito?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT-3&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
+    visibility:
+      field: any
+      getter: none
+      setter: none
+      is-getter: none
