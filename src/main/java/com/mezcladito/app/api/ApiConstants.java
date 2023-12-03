@@ -8,6 +8,7 @@ public interface ApiConstants {
     String PLAYER_URI = "/v1/player";
     String ACTIVE_SWITCH= "/switch";
     String TEAM_URI = "/v1/team";
+    String GAME_URI = "/v1/game";
 
 
     int DEFAULT_PAGE = 0;
