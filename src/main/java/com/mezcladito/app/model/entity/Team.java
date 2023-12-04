@@ -1,4 +1,5 @@
 package com.mezcladito.app.model.entity;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -26,5 +27,5 @@ public class Team {
 
     @OneToMany
     @Column(name = "players")
-    private Set<Player> players;
+    private Set<Player> players = new HashSet<>();
 }

@@ -1,8 +1,10 @@
 package com.mezcladito.app.model.DTO.response;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mezcladito.app.model.entity.Player;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,15 +15,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameResponse {
-    
+public class TeamResponse {
+
     @JsonProperty("id")
     private Long id;
 
-    @JsonProperty("team_a")
-    private TeamResponse teamA;
-    
-    @JsonProperty("team_b")
-    private TeamResponse teamB;
-    
+    @JsonProperty("players")
+    private Set<Player> players;
 }
