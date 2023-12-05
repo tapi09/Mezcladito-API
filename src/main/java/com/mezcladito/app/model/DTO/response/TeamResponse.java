@@ -1,6 +1,5 @@
 package com.mezcladito.app.model.DTO.response;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
