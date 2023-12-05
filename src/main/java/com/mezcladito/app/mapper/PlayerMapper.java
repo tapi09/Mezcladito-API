@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import com.mezcladito.app.model.DTO.request.CreatePlayerRequest;
@@ -18,9 +19,13 @@ public interface PlayerMapper {
 
     @Named("playerToPlayerResponse")
     PlayerResponse playerToPlayerResponse(Player player);
-    
+
+    @Mapping(target = "active", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Player createPlayerRequestToPlayer(CreatePlayerRequest createPlayerRequest);  
     
+    @Mapping(target = "active", ignore = true)
+    @Mapping(target = "id", ignore = true)
     Player updatePlayerRequestToPlayer(UpdatePlayerRequest updatePlayerRequest);
     
     

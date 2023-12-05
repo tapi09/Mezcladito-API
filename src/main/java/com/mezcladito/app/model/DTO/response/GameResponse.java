@@ -1,7 +1,5 @@
 package com.mezcladito.app.model.DTO.response;
 
-import java.util.Set;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

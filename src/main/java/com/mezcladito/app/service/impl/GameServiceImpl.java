@@ -22,8 +22,6 @@ public class GameServiceImpl implements GameService{
     @Override
     public Game startMixed() {
         Game game = new Game();
-        List<Player> playersPrintList = playerRepository.findAll();
-        System.out.println(playersPrintList.toString());
         List<Player> activePlayers = playerRepository.findAll()
                                     .stream()
                                     .filter(player -> player.getActive())
