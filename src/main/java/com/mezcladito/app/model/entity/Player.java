@@ -34,7 +34,9 @@ public class Player {
     @Column(name = "goalKeeper")
     private Boolean goalKeeper;
 
+    @Column(name = "speed")
+    private Integer speed;
+
     @Column(name = "active")
     private Boolean active = false;
-
 }
