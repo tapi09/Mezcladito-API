@@ -1,7 +1,10 @@
 package com.mezcladito.app.service;
 
 
+import java.util.List;
+
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 
 import com.mezcladito.app.model.entity.Player;
 import com.mezcladito.app.model.entity.PlayerList;
@@ -20,4 +23,6 @@ public interface PlayerService{
     void deleteById(Long id);
 
     Player activateSwitch(Long id);
+
+    List<Player> getAll();
 }

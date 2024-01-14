@@ -1,5 +1,6 @@
 package com.mezcladito.app.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -71,6 +72,11 @@ public class PlayerServiceImpl implements PlayerService {
             player.setActive(true);
         }
         return playerRepository.save(player);
+    }
+
+    @Override
+    public List<Player> getAll() {
+        return playerRepository.findAll();
     }
 
 }
