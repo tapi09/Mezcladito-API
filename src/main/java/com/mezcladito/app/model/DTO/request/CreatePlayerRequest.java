@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CreatePlayerRequest {
     
-    
     @JsonProperty("name")
     private String name;
 
@@ -22,6 +21,9 @@ public class CreatePlayerRequest {
     
     @JsonProperty("defense")
     private Integer defense;
+
+    @JsonProperty("speed")
+    private Integer speed;
     
     @JsonProperty("goalKeeper")
     private Boolean goalKeeper;

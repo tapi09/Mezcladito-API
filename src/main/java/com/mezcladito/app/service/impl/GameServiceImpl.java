@@ -1,5 +1,6 @@
 package com.mezcladito.app.service.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class GameServiceImpl implements GameService{
                                     .stream()
                                     .filter(player -> player.getActive())
                                     .collect(Collectors.toList());
+        activePlayers.sort(Comparator.comparingInt(player -> player.getAttack() + player.getDefense()+player.getSpeed()));
         Team teamA= new Team();
         Team teamB= new Team();
         int count=0;

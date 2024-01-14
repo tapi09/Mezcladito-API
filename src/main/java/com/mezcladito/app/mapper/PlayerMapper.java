@@ -14,6 +14,7 @@ import com.mezcladito.app.model.entity.Player;
 
 @Mapper
 public interface PlayerMapper {
+    
     @IterableMapping(qualifiedByName = "playerToPlayerResponse")
     List<PlayerResponse> playerListToPlayerResponseList(List<Player> players);
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,6 +41,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(PLAYER_URI)
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200/")
 public class PlayerController {
  
     private final PlayerMapper playerMapper;
@@ -59,9 +61,15 @@ public class PlayerController {
 
         return ResponseEntity.created(location).build();
     }
+     @GetMapping("/all")
+    public ResponseEntity<List<Player>> getPlayers() {
+    return ResponseEntity.ok(playerService.getAll());
+                                                
+    }
+
 
     @GetMapping
-    public ResponseEntity<PlayerResponseList> getPlayers(@RequestParam Optional<Integer> page,
+    public ResponseEntity<PlayerResponseList> getPlayersPage(@RequestParam Optional<Integer> page,
                                                            @RequestParam Optional<Integer> size) {
 
         final int pageNumber = page.filter(p -> p > 0).orElse(ApiConstants.DEFAULT_PAGE);
@@ -86,8 +94,9 @@ public class PlayerController {
         }
         return ResponseEntity.ok().body(response);
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<PlayerResponse> getAlkymer(@Valid @NotNull @PathVariable Long id) {
+    public ResponseEntity<PlayerResponse> getPlayer(@Valid @NotNull @PathVariable Long id) {
         Player player = playerService.getByIdIfExists(id);
         PlayerResponse response = playerMapper.playerToPlayerResponse(player);
         return ResponseEntity.ok(response);
@@ -105,7 +114,7 @@ public class PlayerController {
     public void deletePlayer(@Valid @NotNull @PathVariable Long id){
         playerService.deleteById(id);
     }
-    @PostMapping(ACTIVE_SWITCH+"/{id}")
+    @GetMapping(ACTIVE_SWITCH+"/{id}")
     ResponseEntity<PlayerResponse> activateSwitch(@Valid @NotNull @PathVariable Long id){
         Player player=playerService.activateSwitch(id);
         PlayerResponse playerResponse = playerMapper.playerToPlayerResponse(player);

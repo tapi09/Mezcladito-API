@@ -1,5 +1,6 @@
 package com.mezcladito.app.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -7,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mezcladito.app.exception.NotFoundException;
 import com.mezcladito.app.model.entity.Player;
 import com.mezcladito.app.model.entity.PlayerList;
 import com.mezcladito.app.repository.PlayerRepository;
@@ -35,7 +37,7 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     public Player getByIdIfExists(Long id) {
-        return playerRepository.findById(id).orElseThrow(() -> new NullPointerException());
+        return playerRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
     @Override
@@ -46,10 +48,11 @@ public class PlayerServiceImpl implements PlayerService {
                     Optional.ofNullable(player.getName()).ifPresent(playerJpa::setName);
                     Optional.ofNullable(player.getAttack()).ifPresent(playerJpa::setAttack);
                     Optional.ofNullable(player.getDefense()).ifPresent(playerJpa::setDefense);
+                    Optional.ofNullable(player.getSpeed()).ifPresent(playerJpa::setSpeed);
                     Optional.ofNullable(player.getGoalKeeper()).ifPresent(playerJpa::setGoalKeeper);
 
                     return playerRepository.save(playerJpa);
-                }).orElseThrow(() -> new NullPointerException());
+                }).orElseThrow(() -> new NotFoundException(id));
     }
 
     @Override
@@ -69,6 +72,11 @@ public class PlayerServiceImpl implements PlayerService {
             player.setActive(true);
         }
         return playerRepository.save(player);
+    }
+
+    @Override
+    public List<Player> getAll() {
+        return playerRepository.findAll();
     }
 
 }
