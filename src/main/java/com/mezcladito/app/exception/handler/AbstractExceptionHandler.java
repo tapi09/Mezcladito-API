@@ -122,6 +122,7 @@ public abstract sealed class AbstractExceptionHandler permits GlobalExceptionHan
         }
     }
 
+    @SuppressWarnings("null")
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         if (log.isDebugEnabled())
             log.debug("handling HttpRequestMethodNotSupported with status={}", status);
@@ -242,6 +243,7 @@ public abstract sealed class AbstractExceptionHandler permits GlobalExceptionHan
         return this.handleExceptionInternal(ex, headers, status, request, ErrorCode.SERVICE_UNAVAILABLE, null);
     }
 
+    @SuppressWarnings("null")
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, HttpHeaders headers, HttpStatus status, WebRequest request,
                                                              ErrorCode code, @Nullable String customMessage) {
 

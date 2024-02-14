@@ -19,6 +19,7 @@ public interface PlayerMapper {
     List<PlayerResponse> playerListToPlayerResponseList(List<Player> players);
 
     @Named("playerToPlayerResponse")
+    @Mapping(target = "speed", defaultValue = "0")
     PlayerResponse playerToPlayerResponse(Player player);
 
     @Mapping(target = "active", ignore = true)
