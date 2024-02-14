@@ -10,7 +10,7 @@ spring:
     hibernate:
       ddl-auto: update
   jackson:
-    default-property-inclusion: non_null
+    default-property-inclusion: non-null
     property-naming-strategy: com.fasterxml.jackson.databind.PropertyNamingStrategy.SnakeCaseStrategy
     visibility:
       field: any

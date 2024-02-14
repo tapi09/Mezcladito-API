@@ -14,10 +14,12 @@ import com.mezcladito.app.model.entity.Player;
 
 @Mapper
 public interface PlayerMapper {
+    
     @IterableMapping(qualifiedByName = "playerToPlayerResponse")
     List<PlayerResponse> playerListToPlayerResponseList(List<Player> players);
 
     @Named("playerToPlayerResponse")
+    @Mapping(target = "speed", defaultValue = "0")
     PlayerResponse playerToPlayerResponse(Player player);
 
     @Mapping(target = "active", ignore = true)

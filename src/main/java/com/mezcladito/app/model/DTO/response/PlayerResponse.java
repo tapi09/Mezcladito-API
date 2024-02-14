@@ -25,9 +25,12 @@ public class PlayerResponse {
 
     @JsonProperty("defense")
     private Integer defense;
-
+    
     @JsonProperty("goalKeeper")
     private Boolean goalKeeper;
+
+    @JsonProperty("speed")
+    private Integer speed;
 
     @JsonProperty("active")
     private Boolean active;

@@ -3,7 +3,6 @@ package com.mezcladito.app.model.DTO.response;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mezcladito.app.model.entity.Player;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +19,5 @@ public class TeamResponse {
     private Long id;
 
     @JsonProperty("players")
-    private Set<Player> players;
+    private Set<PlayerResponse> players;
 }
