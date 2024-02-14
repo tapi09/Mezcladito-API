@@ -4,7 +4,6 @@ package com.mezcladito.app.service;
 import java.util.List;
 
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 
 import com.mezcladito.app.model.entity.Player;
 import com.mezcladito.app.model.entity.PlayerList;
@@ -12,6 +11,7 @@ import com.mezcladito.app.model.entity.PlayerList;
 
 
 public interface PlayerService{
+
     PlayerList getList(PageRequest pageRequest);
 
     Player getByIdIfExists(Long id);
@@ -25,4 +25,8 @@ public interface PlayerService{
     Player activateSwitch(Long id);
 
     List<Player> getAll();
+
+    List<Player> getActivePlayers();
+
+
 }

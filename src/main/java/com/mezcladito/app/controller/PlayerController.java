@@ -62,8 +62,9 @@ public class PlayerController {
         return ResponseEntity.created(location).build();
     }
      @GetMapping("/all")
-    public ResponseEntity<List<Player>> getPlayers() {
-    return ResponseEntity.ok(playerService.getAll());
+    public ResponseEntity<List<PlayerResponse>> getPlayers() {
+        List<PlayerResponse> players = playerMapper.playerListToPlayerResponseList(playerService.getAll());
+    return ResponseEntity.ok(players);
                                                 
     }
 
@@ -120,5 +121,11 @@ public class PlayerController {
         PlayerResponse playerResponse = playerMapper.playerToPlayerResponse(player);
         return ResponseEntity.ok(playerResponse);
     }
+    @GetMapping("/active-players")
+    ResponseEntity<List<PlayerResponse>> getActivePlayers() {
+        List<PlayerResponse> players = playerMapper.playerListToPlayerResponseList(playerService.getActivePlayers());
+        return ResponseEntity.ok(players);
+    }
+    
 
 }

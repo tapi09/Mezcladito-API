@@ -2,6 +2,7 @@ package com.mezcladito.app.service.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -77,6 +78,14 @@ public class PlayerServiceImpl implements PlayerService {
     @Override
     public List<Player> getAll() {
         return playerRepository.findAll();
+    }
+
+    @Override
+    public List<Player> getActivePlayers() {
+        return playerRepository.findAll()
+                               .stream()
+                               .filter(player -> player.getActive())
+                               .collect(Collectors.toList());
     }
 
 }
