@@ -15,6 +15,7 @@ import com.mezcladito.app.model.entity.PlayerList;
 import com.mezcladito.app.repository.PlayerRepository;
 import com.mezcladito.app.service.PlayerService;
 
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -25,25 +26,25 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Override
     @Transactional(readOnly = true)
-    public PlayerList getList(PageRequest pageRequest) {
+    public PlayerList getList(@NonNull PageRequest pageRequest) {
         Page<Player> page = playerRepository.findAll(pageRequest);
         return new PlayerList(page.getContent(), pageRequest, page.getTotalElements());
     }
 
     @Override
     @Transactional
-    public Long createEntity(Player player) {
+    public Long createEntity(@NonNull Player player) {
         return playerRepository.save(player).getId();
     }
 
     @Override
-    public Player getByIdIfExists(Long id) {
+    public Player getByIdIfExists(@NonNull Long id) {
         return playerRepository.findById(id).orElseThrow(() -> new NotFoundException(id));
     }
 
     @Override
     @Transactional
-    public void updateEntityIfExists(Long id, Player player) {
+    public void updateEntityIfExists(@NonNull Long id, Player player) {
         playerRepository.findById(id)
                 .map(playerJpa -> {
                     Optional.ofNullable(player.getName()).ifPresent(playerJpa::setName);
@@ -56,16 +57,17 @@ public class PlayerServiceImpl implements PlayerService {
                 }).orElseThrow(() -> new NotFoundException(id));
     }
 
+    @SuppressWarnings("null")
     @Override
     @Transactional
     public void deleteById(Long id) {
-        Player player = getByIdIfExists(id);
+        Player player =  getByIdIfExists(id);
         playerRepository.delete(player);
     }
 
     @Override
     @Transactional
-    public Player activateSwitch(Long id) {
+    public Player activateSwitch(@NonNull Long id) {
         Player player = getByIdIfExists(id);
         if (player.getActive()) {
             player.setActive(false);
